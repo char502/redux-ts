@@ -1,15 +1,20 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { actionCreators } from '../state';
+import { useActions } from '../hooks/useActions'
 
 const RepositoriesList: React.FC = () => {
   const [term, setTerm] = useState('');
-  const dispatch = useDispatch();
+
+  // This version of searchRepositories is now already bound to the dispatch function 
+  // because of bindActionCreators in the useActions Hook
+  // As soon as this is called, it is equivalent to the previous dispatch call:
+  // dispatch(actionCreators.searchRepositories(term));
+  const { searchRepositories } = useActions();
+  
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(actionCreators.searchRepositories(term));
+    searchRepositories(term);
   };
 
   return (
