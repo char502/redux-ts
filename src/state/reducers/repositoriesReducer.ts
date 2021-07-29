@@ -7,9 +7,15 @@ interface RepositoriesState {
   data: string[];
 }
 
+const initialState = {
+  loading: false,
+  error: null,
+  data: []
+}
+
 
 const reducer = (
-  state: RepositoriesState,
+  state: RepositoriesState = initialState,
   action: Action
 ): RepositoriesState => {
   // if (action.type === 'search_repositiories_success') {
@@ -17,6 +23,8 @@ const reducer = (
   //   // SearchRepositoriesSuccessAction interface
   //   action.payload
   // }
+
+  // an action is always going to be an object that must have a type property (and - optionally - a payload)
 
   switch (action.type) {
     case ActionType.SEARCH_REPOSITORIES:
